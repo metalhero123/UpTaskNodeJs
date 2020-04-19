@@ -42,10 +42,10 @@ if(btnEliminar) {
                     icon: 'error',
                     title: 'Hubo un error',
                     text: 'No se pudo eliminar el proyecto'
-                  })
-                })
+                  });
+                });
             }
-        })
+        });
     });
 }
 

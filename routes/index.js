@@ -7,6 +7,7 @@ const { body } = require('express-validator');
 // importar el controlador 
 const proyectosController = require('../controllers/proyectosController');
 const tareasController = require('../controllers/tareasController');
+const usuariosController = require('../controllers/usuariosController');
 
 // Home Route
  router.get('/', proyectosController.proyectosHome);
@@ -30,5 +31,18 @@ router.delete('/proyectos/:url', proyectosController.eliminarProyecto);
 
 // Tareas
 router.post('/proyectos/:url', tareasController.agregarTarea);
+
+// Actualizar tarea
+router.patch('/tareas/:id', tareasController.cambiarEstadoTarea);
+
+// Eliminar tarea
+router.delete('/tareas/:id', tareasController.eliminarTarea);
+
+// Crear nueva cuenta
+router.get('/crear-cuenta', usuariosController.formCrearCuenta);
+router.post('/crear-cuenta', usuariosController.crearCuenta);
+
+// Iniciar sesion
+router.get('/iniciar-sesion', usuariosController.formIniciarSesion);
 
 module.exports = router;
