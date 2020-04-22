@@ -23,12 +23,10 @@ const Usuarios = db.define('usuarios', {
                 Usuarios.findOne({
                     where: {email: value}
                 })
-
                     .done(function(usuario){
                         if(usuario) {
                             return next('Email ya registrado');
                         }
-
                         next();
                     });
             }
@@ -42,6 +40,12 @@ const Usuarios = db.define('usuarios', {
                 msg: 'La contraseña no puede ir vacía'
             }
         }
+    },
+    token: {
+        type: Sequelize.STRING,
+    },
+    expiracion: {
+        type: Sequelize.DATE
     }
 }, {
     hooks: {
@@ -56,7 +60,7 @@ Usuarios.prototype.verificarPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 }
 
-//Usuarios.hasMany(Proyectos);
+Usuarios.hasMany(Proyectos);
 
 module.exports = Usuarios;
 
